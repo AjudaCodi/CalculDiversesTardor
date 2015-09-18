@@ -1,0 +1,137 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\title{Estructures Algebraiques\\Grups}
+\author{Sistach Reinoso, Arnau}
+
+% nomes crec que serveix per la ela geminada (on sense el corrector dubto mai fer-ho anar 183 ·)
+\usepackage[catalan]{babel}
+
+% perque quedi mes clar
+\usepackage{color}
+
+
+\usepackage{mathtools}
+
+% faig anar equation*
+\usepackage{amsmath}
+
+\usepackage{amssymb}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\prodEscalar}[2]{\langle#1, #2\rangle}
+
+
+
+% like kindle
+
+\usepackage{microtype}     % microtypography, reduces hyphenation
+
+\usepackage[papersize={3.6in,4.8in},hmargin=0.1in,vmargin={0.1in,0.1in}]{geometry}  % page geometry
+
+\usepackage{fancyhdr}   % headers and footers
+\pagestyle{fancy}
+\fancyhead{}            % clear page header
+\fancyfoot{}            % clear page footer
+
+\setlength{\abovecaptionskip}{2pt} % space above captions 
+\setlength{\belowcaptionskip}{0pt} % space below captions
+\setlength{\textfloatsep}{2pt}     % space between last top float or first bottom float and the text
+\setlength{\floatsep}{2pt}         % space left between floats
+\setlength{\intextsep}{2pt}        % space left on top and bottom of an in-text float
+
+
+% https://atlas.mat.ub.edu/personals/crespo/ApuntsEstructuresAlgebraiques.pdf
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{L'espai $\R^2$}
+\begin{itemize}
+\item $x - (x_1, x_2, \dots, x_n)$, $x_i$ són les coordenades
+\item $\R^2$ plà euclidià
+\item $\R^3$ espai euclidià
+\end{itemize}
+
+\subsection{Demostració}
+\begin{itemize}
+\item Apliquem el teorema del cosinua al triangle
+\subitem $\|x-y\|^2 = \|x\|^2 - 2 \|x\|\|y\| \cos{\theta}$
+\item $\|x-y\|^2 = (x - y) (x - y) = \|x\|^2 + \|y\|^2 - 2x\cdot y$
+\item $\|x\|^2 - 2 \|x\|\|y\| \cos{\theta} = \|x\|^2 + \|y\|^2 - 2x\cdot y$
+\end{itemize}
+
+\section{Definicions}
+\begin{itemize}
+\item Producte escalar (euclidià)
+\begin{itemize}
+	\item $ \forall x, y \in \R^n\quad x\cdot y = \prodEscalar{x}{y} = \sum_{i=1}^n x_iy_i \in \R$
+	\item $ \forall \theta \in [0, \pi] \quad \prodEscalar{x}{y} = \|x\|\|y\| \cos{\theta}$
+\end{itemize}
+\item Norma euclidiana
+	\begin{itemize}
+	\item $\forall x \in \R^n \quad \|x\| = \prodEscalar{x}{x}^{\frac{1}{2}} = \sqrt{\sum x_i^2}$
+	\end{itemize}
+\item unitari
+	\begin{itemize}
+	\item $u$ si $\|u\| = 1$
+	\item normalitzar un vectoro
+		\subitem $\forall x \in \R^n\setminus \{0\} \to u = \frac{x}{\|x\|}$
+	\end{itemize}
+
+\item Ortogonals
+	\begin{itemize}
+	\item $\prodEscalar{x}{y} = 0 \Rightarrow x \perp y$
+	\item Projecció O. d'un vector sobre un altre $\neq \emptyset$
+		\begin{itemize}
+		\item
+		$
+		\begin{rcases}
+		v = v_1 + v_2\\ v_1 = \lambda u \\ v_2 \cdot u = 0
+		\end{rcases} \Leftrightarrow 0 = (v - v_1)u 
+		$
+		\item $0 = (v - \lambda u) u = v\cdot u - \lambda u\cdot u = v\cdot u - \lambda \|u\|^2$
+		\item $\Leftrightarrow \lambda = \frac{v\cdot u}{\|u\|^2}$
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\section{Propietats}
+\begin{itemize}
+\item Producte Esclar
+	\begin{itemize}
+	\item $\prodEscalar{x}{x} \ge 0$ i $\prodEscalar{x}{x} = 0 \Leftrightarrow x = \vec0$
+	\item $\prodEscalar{x}{y} = \prodEscalar{y}{x}$
+	\item $\forall \alpha, \beta\quad (\alpha x + \beta y)\cdot z = \alpha(x\cdot z) + \beta(y\cdot z)$
+	\end{itemize}
+\item Norma
+	\begin{itemize}
+	\item $\|x\| \ge 0$
+	\item $\|x\| = 0 \Leftrightarrow x = \vec 0$
+	\item $\|\lambda x\| = |\lambda|\|x\|$ Homogeneïtat
+	\item $\|x + y\| \le \|x\| + \|y\|$ Desigualtat triangular
+		\begin{itemize}
+		\item Demostració
+		\item $\|x + y\|^2 = (x + y)(x + y) =$
+		\item $\|x\|^2 + 2x\cdot y + \|y\|^2 \overset{\text{Cauchy-Schwarz}}{\le}$
+		\item $\|x\|^2 + 2\|x\|\|y\| + \|y\|^2 = $
+		\item $(\|x\| + \|y\|)^2$
+		\item Conseqüència triangular
+		\item $|\|x\|-\|y\|| \le \|x - y\|$
+		\item $-\|x-y\| \le \|x\| - \|y\| \le \|x - y\|$
+			\subitem $\|y\| \le \|x - y\| + \|x\|$
+			\subitem $\|x\| \le \|x - y\| + \|y\|$
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\section{Coses fortes}
+\begin{itemize}
+\item Desigualtat de Chauchy-Schwarz
+	\subitem $|x\cdot y| \le \|x\|\|y\|$
+\end{itemize}
+
+
+\end{document}
