@@ -24,6 +24,9 @@
 
 \newcommand{\prodEscalar}[2]{\langle#1, #2\rangle}
 
+\DeclareMathOperator{\distancia}{d}
+\DeclareMathOperator{\bola}{B}
+\DeclareMathOperator{\sfere}{S}
 
 
 % like kindle
@@ -48,6 +51,7 @@
 \begin{document}
 \maketitle
 \tableofcontents
+\newpage
 
 \section{L'espai $\R^2$}
 \begin{itemize}
@@ -56,21 +60,13 @@
 \item $\R^3$ espai euclidià
 \end{itemize}
 
-\subsection{Demostració}
-\begin{itemize}
-\item Apliquem el teorema del cosinua al triangle
-\subitem $\|x-y\|^2 = \|x\|^2 - 2 \|x\|\|y\| \cos{\theta}$
-\item $\|x-y\|^2 = (x - y) (x - y) = \|x\|^2 + \|y\|^2 - 2x\cdot y$
-\item $\|x\|^2 - 2 \|x\|\|y\| \cos{\theta} = \|x\|^2 + \|y\|^2 - 2x\cdot y$
-\end{itemize}
-
-\section{Definicions}
+\subsection*{Definicions}
 \begin{itemize}
 \item Producte escalar (euclidià)
-\begin{itemize}
+	\begin{itemize}
 	\item $ \forall x, y \in \R^n\quad x\cdot y = \prodEscalar{x}{y} = \sum_{i=1}^n x_iy_i \in \R$
 	\item $ \forall \theta \in [0, \pi] \quad \prodEscalar{x}{y} = \|x\|\|y\| \cos{\theta}$
-\end{itemize}
+	\end{itemize}
 \item Norma euclidiana
 	\begin{itemize}
 	\item $\forall x \in \R^n \quad \|x\| = \prodEscalar{x}{x}^{\frac{1}{2}} = \sqrt{\sum x_i^2}$
@@ -97,8 +93,38 @@
 		\item $\Leftrightarrow \lambda = \frac{v\cdot u}{\|u\|^2}$
 		\end{itemize}
 	\end{itemize}
+
+\item Desigualtat triangular
+	\begin{itemize}
+	\item $\|x + y\| \le \|x\| + \|y\|$
+	\end{itemize}
+
+\item Distància
+	\begin{enumerate}
+	\item $\distancia (x, y) \ge 0$
+		\subitem $\distancia (x, y) = 0 \Leftrightarrow x = y$
+	\item simetria $\distancia (x, y) = \distancia(y, x)$
+	\item desigualtat triangular
+	\end{enumerate}
+
+\item Distància euclidiana
+	\begin{itemize}
+	\item $\distancia(x, y) = \|y - x\|$
+	\end{itemize}
+
+\item Convergència de succesions en $\R^n$
+	\begin{itemize}
+	\item $(x^{(j)})_{j \ge 1}$ succesió de punts de $\R^n$
+	\item $x^{(j)} = (x^{(j)}_{1-n,})$
+	\item $x^{(j)} \underset{j \to \infty}{\to} x \overset{\text{def}}{\Leftrightarrow} \distancia(x^{(j)}, x) \underset{j \to \infty}{\to} 0$
+	\end{itemize}
+
+\item Desigualtat de Chauchy-Schwarz
+	\subitem $|x\cdot y| \le \|x\|\|y\|$
 \end{itemize}
-\section{Propietats}
+
+
+\subsection*{Propietats}
 \begin{itemize}
 \item Producte Esclar
 	\begin{itemize}
@@ -125,13 +151,64 @@
 			\subitem $\|x\| \le \|x - y\| + \|y\|$
 		\end{itemize}
 	\end{itemize}
+\item Demostració
+	\begin{itemize}
+	\item Apliquem el teorema del cosinua al triangle
+	\subitem $\|x-y\|^2 = \|x\|^2 - 2 \|x\|\|y\| \cos{\theta}$
+	\item $\|x-y\|^2 = (x - y) (x - y) = \|x\|^2 + \|y\|^2 - 2x\cdot y$
+	\item $\|x\|^2 - 2 \|x\|\|y\| \cos{\theta} = \|x\|^2 + \|y\|^2 - 2x\cdot y$
+	\end{itemize}
 \end{itemize}
 
-\section{Coses fortes}
+\section{Topologia}
+\subsection*{Definicions}
 \begin{itemize}
-\item Desigualtat de Chauchy-Schwarz
-	\subitem $|x\cdot y| \le \|x\|\|y\|$
+\item Bola
+	\subitem Oberta
+	\begin{itemize}
+	\item $a \in \R^n$
+	\item $r > 0$
+		\begin{itemize}
+		\item $\bola(a, r) = \{x \in \R^n: \distancia(x, a) < r \}$
+		\end{itemize}
+	\end{itemize}
+	\subitem Tancada
+	\begin{itemize}
+	\item $\bola'(a, r) = \{x \in \R^n: \distancia(x, a) \le r \}$
+	\end{itemize}
+	\subitem Esfera
+	\begin{itemize}
+	\item $\sfere(a, r) = \{x \in \R^n: \distancia(x, a) = r \}$
+	\end{itemize}
 \end{itemize}
 
+\subsection*{Demostracions}
+\begin{itemize}
+\item Oberts
+	\begin{enumerate}
+	\item Unió oberta és oberta
+	\item Intersecció finita d'oberts és oberta
+	\end{enumerate}
+\end{itemize}
+
+\subsection*{Exemple}
+\begin{itemize}
+\item $(\bola'(a, r))^\circ = \bola(a, r)$
+	\begin{itemize}
+	\item[$\supset|$] $\bola(a,r) \subset \bola'(a,r) \Rightarrow \bola(a, r) \subset (\bola'(a, r))$
+	\item[$\subset|$] $\bola'(a,r) = \bola(a,r) \cup \sfere(a,r)$
+		\begin{itemize}
+		\item $(\bola'(a, r)) \subset \bola (a, r)$
+		\item $x \in \sfere(a, r)$
+		\item $\forall \varepsilon > 0\quad \bola(x, \varepsilon) \not\subset \bola'(a, r)$
+		\end{itemize}
+	\end{itemize}
+
+\item $\overline{\bola(a, r)} = \bola'(a,r)$
+	\begin{itemize}
+	\item[$\subset|$] $\bola(a,r) \subset \bola'(a,r) \Rightarrow \overline{\bola(a, r)} \subset \bola'(a,r)$
+	\item[$\supset|$] $\bola'(a,r) = \bola(a,r) \cup \sfere(a,r) \subset \overline{\bola(a, r)}$
+	\end{itemize}
+\end{itemize}
 
 \end{document}
